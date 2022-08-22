@@ -1,0 +1,19 @@
+python3 -m venv .venv
+*entrar en la carpeta del ambiente virtual, a la carpeta de Scripts y ejecutar 'Activate'*
+pip install fastapi
+pip install "uvicorn[standard]"
+pip3 freeze > requirements.txt
+copy nul "main.py"
+*en el archivo main poner el codigo de la app*
+uvicorn main:app --reload
+*revisar la app corre en http://localhost:8000/*
+python -m pip install requests
+*importar requests al main*
+*editar el main*
+uvicorn main:app --reload
+*revisar la app corre en http://localhost:8000/*
+*abrir swagger http://localhost:8000/docs*
+
+Add CI
+python -m pip install pytest
+pip3 freeze > requirements.txt
