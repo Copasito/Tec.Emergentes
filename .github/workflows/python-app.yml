@@ -54,15 +54,14 @@ jobs:
       #- name: Run tox
        # run: tox -e py
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Report Status
-        if: always()
-        uses: copasito/notify-slack-action@v1
-        with:
-          status: ${{ job.status }}
-          notify_when: 'failure'
-        env:
-          ACTION_MONITORING_SLACK: ${{ secrets.ACTION_MONITORING_SLACK }}
+        #uses: SonarSource/sonarcloud-github-action@master
+        #env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#      action "Notify Slack" {
+        uses: krider2010/slack-bot-action@1.0.1
+        secrets: ["SLACK_BOT_TOKEN", "CONVERSATION_ID"]
+        env: 
+          MESSAGE_FILE = "slack-message.json"
+        needs : ["Another Action To Generate slack-message.json"]
+}
